@@ -26,4 +26,14 @@ public interface PromotionAnalysisJobRepository extends JpaRepository<PromotionA
 """)
     void deleteByPromotionId(@Param("promotionId") Long promotionId);
 
+    @Modifying
+    @Query("""
+    update PromotionAnalysisJob j
+    set j.status = com.hoppin.infra.crawling.enumtype.AnalysisJobStatus.DISPATCHING,
+        j.errorMessage = null
+    where j.id = :analysisJobId
+      and j.status = com.hoppin.infra.crawling.enumtype.AnalysisJobStatus.PENDING
+""")
+    int markDispatchingIfPending(@Param("analysisJobId") Long analysisJobId);
+
 }

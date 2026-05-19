@@ -94,6 +94,21 @@ public class PromotionAnalysisJob extends BaseEntity {
         this.errorMessage = null;
     }
 
+    public void markDispatching() {
+        this.status = AnalysisJobStatus.DISPATCHING;
+        this.errorMessage = null;
+    }
+
+    public void markDispatched() {
+        this.status = AnalysisJobStatus.DISPATCHED;
+        this.errorMessage = null;
+    }
+
+    public void revertToPending(String errorMessage) {
+        this.status = AnalysisJobStatus.PENDING;
+        this.errorMessage = errorMessage;
+    }
+
     public void markCompleted() {
         this.status = AnalysisJobStatus.COMPLETED;
         this.finishedAt = LocalDateTime.now();

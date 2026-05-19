@@ -130,6 +130,13 @@ app:
   frontend-base-url: ${FRONTEND_BASE_URL}
   internal-api-key: ${APP_INTERNAL_API_KEY}
   analysis-automation-webhook-url: ${ANALYSIS_AUTOMATION_WEBHOOK_URL:}
+  analysis-job-dispatch:
+    queue-url: ${ANALYSIS_JOB_DISPATCH_QUEUE_URL:}
+    outbox-publish-batch-size: ${ANALYSIS_JOB_OUTBOX_PUBLISH_BATCH_SIZE:20}
+    outbox-publish-fixed-delay-millis: ${ANALYSIS_JOB_OUTBOX_PUBLISH_FIXED_DELAY_MILLIS:2000}
+    sqs-consume-max-messages: ${ANALYSIS_JOB_SQS_CONSUME_MAX_MESSAGES:5}
+    sqs-consume-wait-seconds: ${ANALYSIS_JOB_SQS_CONSUME_WAIT_SECONDS:10}
+    sqs-consume-fixed-delay-millis: ${ANALYSIS_JOB_SQS_CONSUME_FIXED_DELAY_MILLIS:1000}
 
   mail:
     from: ${MAIL_USERNAME}
